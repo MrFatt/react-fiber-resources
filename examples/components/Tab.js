@@ -23,17 +23,23 @@ const style = {
   },
 };
 
-const Tab = ({isAsync, onClick}) => (
+const Tab = ({isAsync, isDebounce, isSync, onClick}) => (
   <ul style={style.tab}>
     <li
       style={Object.assign({}, style.content, isAsync ? style.active : null)}
-      onClick={() => onClick(true)}
+      onClick={() => onClick("async")}
     >
       Async mode
     </li>
     <li
-      style={Object.assign({}, style.content, !isAsync ? style.active : null)}
-      onClick={() => onClick(false)}
+        style={Object.assign({}, style.content, isDebounce ? style.active : null)}
+        onClick={() => onClick("debounce")}
+    >
+        Debounce mode
+    </li>
+    <li
+      style={Object.assign({}, style.content, isSync ? style.active : null)}
+      onClick={() => onClick("sync")}
     >
       Sync mode
     </li>
